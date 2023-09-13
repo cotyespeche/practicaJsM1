@@ -24,7 +24,7 @@ var c = function (a, b, c) {
   console.log(b); //9
 };
 c(8, 9, 10);
-console.log(b); //9
+console.log(b); //10
 console.log(x); //1
 ```
 
@@ -71,8 +71,8 @@ if (true) {
   console.log(instructor); //'The Flash'
   console.log(pm); // 'Reverse Flash'
 }
-console.log(instructor); //TONY
-console.log(pm); //'Franco'
+console.log(instructor); // 'The Flash' sigue siendo ese xq se declara con var. Como no hay contexto nuevo se pisan los valores.
+console.log(pm); //'Franco' porque vuelve al principio, let pm = "Reverse Flash" este esta dentro de otro scope, tiene sentido dentro de las llaves. fuera de esono existe.
 ```
 
 ### Coerción de Datos
@@ -81,13 +81,13 @@ console.log(pm); //'Franco'
 
 ```javascript
 6 / "3" // 2
-"2" * "3" //6
-4 + 5 + "px" // 9px
-"$" + 4 + 5 // $45
+"2" * "3" //6 Number('2') * Number('3') ---> esto es lo que hace por dentras JS
+4 + 5 + "px" // '9px'
+"$" + 4 + 5 // '$45'
 "4" - 2 // 2
-"4px" - 2 // NaN
-7 / 0 // INFINITY
-{}[0] // UNDIFINED PORWUE NO SE PUEDE ACCEDER CON [] CUANDO ES UN OBJETO
+"4px" - 2 // NaN porque no puede restar. Si fuese un + concatena asi ('4px2')
+7 / 0 // INFINITY Todo numero dividido por cero tiende a infinito
+{}[0] // UNDIFINED PORQUE no existe la propiedad 0, esta vacio. {0: 'Hola'}[0] ---> ahi si funcionaria. Accede mediante bracket notation a la propiedad del objeto
 parseInt("09") // 9
 5 && 2 // 2  (AND lógico) devuelve el primer valor si es evaluado como falso; de lo contrario, devuelve el segundo valor.
 2 && 5 // 5
@@ -97,8 +97,9 @@ parseInt("09") // 9
 3>2>1 // FALSE
 // 3 > 2: Esta comparación evalúa si 3 es mayor que 2, lo cual es verdadero. Por lo tanto, esta parte de la expresión se evalúa como true.
 //true > 1: Ahora estamos comparando true (que se interpreta como 1 en una comparación numérica) con 1. La comparación 1 > 1 es falsa, ya que 1 no es mayor que 1. Por lo tanto, el resultado final de la expresión 3 > 2 > 1 es false.
-[] == ![] // TRUE
-// [] representa un array vacío, que se evalúa como verdadero en un contexto booleano.
+[] == ![] // TRUE ---> (segun la profe) se compara los espacios de memoria, y como no ocupan los mismos espacios es true. si fuese [] == [] ---> daria false porque no sepuede igualar porque ocupan distintos espacios de memoria. Aplica tbn para objetos  
+
+//  Segun Chatgpt [] representa un array vacío, que se evalúa como verdadero en un contexto booleano.
 
 // ![] aplica el operador lógico NOT (!) al array vacío []. Esto lo convierte en false porque !true es false.
 
@@ -148,9 +149,9 @@ function getFood(food) {
   return snack;
 }
 
-getFood(false);
+getFood(false); // Undifined
 
-//  'Meow Mix'; porque getFood esta en false por lo tanto el bloque if no se ejecuta. de esta manera se vuelve a la variable gñobal  'Meow Mix'que se declar antes de la funcion
+//  UNDEFINED; porque getFood esta en false por lo tanto el bloque if no se ejecuta. de esta manera se EN LA FASE DE CREACION SE GUARDO VAR SNACK: UNDIFINED PEOR NO SE PASO A LA FASE DE EJECUCUION
 ```
 
 ### This
@@ -169,11 +170,11 @@ var obj = {
   },
 };
 
-console.log(obj.prop.getFullname());
+console.log(obj.prop.getFullname()); // "Aurelio De Rosa"
 
 var test = obj.prop.getFullname;
 
-console.log(test());
+console.log(test()); //Undifined
 
 // "Aurelio De Rosa"
 // Se llama a test(). En este caso, como test se convirtió en una función independiente sin contexto, this dentro de la función test no está relacionado con ningún objeto. Por lo tanto, this.fullname se evalúa como undefined porque no hay un objeto que tenga una propiedad fullname.
@@ -206,7 +207,7 @@ printing();
 // 4
 // printing 1
 // contexto global
-// osea que se muestra el 1, 4, 3 y 2
+// osea que se muestra el 1, 4, 3 y 2 (sale primero el 3 prque demora menos segundos que el 2)
 ```
 
 </br >
