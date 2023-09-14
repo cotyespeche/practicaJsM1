@@ -96,3 +96,39 @@ console.log(resultado); // Esto imprimirá 15 en la consola.
      // REFERENCIA ES CUANDO APUNTA A UN ESPACIO DE MEMORIA 
      // LOS ARRAY Y OBJETOS OCUPAN UN ESPACIO EN LA MEMORIA, PERO CUANDO HABLAMOS DE REFERENCIA ES UNICAMENTE PARA OBJETOS.
 
+     x = 1;
+     var a = 5;
+     var b = 10;
+
+     var c = function (a, b, c) {
+        var x = 10;
+        console.log(x); //10
+        console.log(a); //8
+        var f = function (a, b, c) {
+           b = a;
+           console.log(b); // 8
+           b = c; // 10
+           var x = 5;
+        };
+
+        f(a, b, c);
+        console.log(b); //9
+     };
+
+     c(8, 9, 10);
+     console.log(b); //10
+     console.log(x); // 1
+
+
+     function test() {
+        console.log(a); // 1
+        console.log(foo()); // 2
+     
+        var a = 1;
+        function foo() {
+           return 2;
+        }
+     }
+     
+     test();
+     

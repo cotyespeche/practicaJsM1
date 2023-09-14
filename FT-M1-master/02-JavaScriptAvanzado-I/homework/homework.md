@@ -184,7 +184,7 @@ console.log(test()); //Undifined
 // En resumen, la diferencia clave aquí es cómo se maneja el valor this en el contexto de la función. Cuando getFullname se llama directamente desde obj.prop, this se refiere a obj.prop, pero cuando se asigna a test y se llama como una función independiente, this ya no tiene un contexto definido y se convierte en undefined.
 ```
 
-### Event loop
+### Event loop ( delega tareas podemos hacer cosas asincronas )
 
 Considerando el siguiente código, ¿Cuál sería el orden en el que se muestra por consola? ¿Por qué?
 
